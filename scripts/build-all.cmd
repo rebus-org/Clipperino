@@ -13,11 +13,49 @@ if not exist "%project%" (
   goto fail
 )
 
+set nuspec=%root%\%name%\%name%.nuspec
 
+if not exist "%nuspec%" (
+  echo Could not find nuspec file here: "%nuspec%"
+  goto fail
+)
 
+set nuget=%root%\tools\nuget\nuget.exe
 
+if not exist "%nuget%" (
+  echo Could not find NuGet.exe here: %nuget%
+  goto fail
+)
+
+set outputdir=%root%\deploy
+
+if exist "%outputdir%" (
+  rd "%outputdir%" /s/q
+)
+
+mkdir "%outputdir%"
+
+echo Building...
+msbuild "%project%" /t:rebuild /p:Configuration=Release
+if %ERRORLEVEL% neq 0 (
+  echo Error building
+  goto fail
+)
+
+echo Packing...
+"%nuget%" pack "%nuspec%" /OutputDirectory "%outputdir%" /Version %version%
+if %ERRORLEVEL% neq 0 (
+  echo Error packing
+  goto fail
+)
+
+goto success
 
 
 :fail
 
+echo Failed.
 exit /b -1
+
+
+:success
