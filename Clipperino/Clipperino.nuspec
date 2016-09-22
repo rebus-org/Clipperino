@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>Clipperino</id>
+    <version>$version$</version>
+    <title>Clipperino</title>
+    <authors>mookid8000</authors>
+    <owners>mookid8000</owners>
+    <licenseUrl>https://opensource.org/licenses/MIT</licenseUrl>
+    <projectUrl>https://github.com/rebus-org/Clipperino</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Windows Clipboard helper</description>
+    <copyright>Copyright 2016</copyright>
+    <tags>clipboard windows</tags>
+    <dependencies>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="bin\Release\Clipperino.dll" target="lib\NET45" />
+    <file src="bin\Release\Clipperino.xml" target="lib\NET45" />
+  </files>
+</package>
